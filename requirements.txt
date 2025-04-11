@@ -5,8 +5,10 @@
 # On Windows: .\qml_venv\Scripts\activate
 # On Unix/MacOS: source qml_venv/bin/activate
 
-pennylane==0.38.0
-numpy==1.26.4
-scipy==1.13.1
-autograd==1.7.0
-pennylane-lightning==0.38.0 
+pennylane>=0.30.0
+amazon-braket-pennylane-plugin
+amazon-braket-sdk>=1.35.0
+boto3>=1.26.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+matplotlib>=3.5.0 
