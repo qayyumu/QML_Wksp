@@ -1,0 +1,12 @@
+# Create a new virtual environment:
+# python -m venv qml_venv
+
+# Activate the environment:
+# On Windows: .\qml_venv\Scripts\activate
+# On Unix/MacOS: source qml_venv/bin/activate
+
+pennylane==0.38.0
+numpy==1.26.4
+scipy==1.13.1
+autograd==1.7.0
+pennylane-lightning==0.38.0 
