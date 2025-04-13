@@ -2,6 +2,7 @@
 qml_venv/
 venv/
 ENV/
+.credentials
 
 # Python
 __pycache__/

@@ -11,6 +11,7 @@ from braket.devices import LocalSimulator
 import time
 import logging
 
+AWS_USE = False
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -61,8 +62,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Set up AWS device
 device = setup_aws_device()
 n_qubits = 4
-dev = qml.device("braket.aws.qubit", device_arn=device.arn, wires=n_qubits, shots=1000)
-
+if AWS_USE:
+    dev = qml.device("braket.aws.qubit", device_arn=device.arn, wires=n_qubits, shots=1000)
+else:
+    dev = qml.device("braket.local.qubit", wires=n_qubits, shots=1000)
+    
 # Define the quantum circuit with improved architecture
 @qml.qnode(dev)
 def circuit(weights, inputs):
@@ -112,8 +116,8 @@ weights = 0.1 * np.random.randn(3 * n_qubits, requires_grad=True)
 
 # Training parameters
 opt = qml.GradientDescentOptimizer(stepsize=0.4)
-batch_size = 5
-epochs = 20
+batch_size = 20
+epochs = 5
 
 # Training loop with AWS-specific error handling
 for epoch in range(epochs):
@@ -130,7 +134,7 @@ for epoch in range(epochs):
             
             # Add a small delay to avoid rate limiting
             time.sleep(0.1)
-            
+            print("Batch Processing",batch_idx)
             weights = opt.step(lambda w: cost(w, batch_features, batch_labels), weights)
         
         # Calculate training cost
