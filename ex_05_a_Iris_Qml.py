@@ -107,6 +107,9 @@ test_predictions = (test_predictions > 0.0).astype(int)
 accuracy = np.mean(test_predictions == y_test)
 print(f"\nTest accuracy: {accuracy:.4f}")
 
+print("\nCircuit diagram:")
+print(qml.draw(circuit)(X_test, weights)) 
+
 # Plot the results
 plt.figure(figsize=(10, 6))
 plt.scatter(X_test[:, 0], X_test[:, 1], c=test_predictions, cmap='viridis')

@@ -116,7 +116,7 @@ weights = 0.1 * np.random.randn(3 * n_qubits, requires_grad=True)
 
 # Training parameters
 opt = qml.GradientDescentOptimizer(stepsize=0.4)
-batch_size = 80
+batch_size = 30
 epochs = 1
 
 # Training loop with AWS-specific error handling
